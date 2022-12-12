@@ -1,9 +1,14 @@
-
+import {Routes, Route} from 'react-router-dom'
+import Dashboard from "./pages/Dashboard"
+import Login from './pages/Login'
 function App() {
  
   return (
-    <div className="flex justify-center">
-     <h1 className="text-2xl">Test Crud App</h1>
+    <div className="">
+     <Routes>
+      <Route path="/" element={<Login/>} ></Route>
+      <Route path="/dashboard" element={<Dashboard/>} ></Route>
+     </Routes>
     </div>
   )
 }
