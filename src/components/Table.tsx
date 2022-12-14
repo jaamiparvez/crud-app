@@ -1,5 +1,6 @@
 import React from 'react'
 import TableData from "./TableData"
+import TableInput from "./TableInput"
 
 type Props = {}
 
@@ -15,6 +16,8 @@ const data:dataInterface[] = [{ id: 1, name: "John Doe", phoneNumber: 12345678 }
 
 const Table = (props: Props) => {
     return (
+        <div>
+
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
             <table className="table-auto w-full text-sm text-left text-gray-800 ">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -38,10 +41,12 @@ const Table = (props: Props) => {
                         <TableData id={item.id} name={item.name} phoneNumber={item.phoneNumber} />
 
                     ))}
-                    
+                 <TableInput/>
 
                 </tbody>
             </table>
+            
+        </div>
         </div>
     )
 }
