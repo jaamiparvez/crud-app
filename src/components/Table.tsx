@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TableData from "./TableData"
 import TableInput from "./TableInput"
-
+// import {getData} from "../api"
 type Props = {}
 
 interface dataInterface  {
@@ -11,10 +11,33 @@ interface dataInterface  {
 
 }
 
-const data:dataInterface[] = [{ id: 1, name: "John Doe", phoneNumber: 12345678 },
-{ id: 1, name: "Jane Doe", phoneNumber: 12345678 }]
+
+// const data:dataInterface[] = [{ id: 1, name: "John Doe", phoneNumber: 12345678 },
+// { id: 1, name: "Jane Doe", phoneNumber: 12345678 }]
 
 const Table = (props: Props) => {
+
+    const [data, setData] = useState<dataInterface[]>()
+useEffect(()=>{
+    fetch('http://localhost:3000/data',{ method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }}).then((data)=>data.json()).then(setData)
+},[])
+
+function deleteItem(id:string){
+    fetch(`http://localhost:3000/data/${id}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": 'application/json'
+        }
+      })
+        .then(response => response.json())
+}
+
+
+
+
     return (
         <div>
 
@@ -37,8 +60,8 @@ const Table = (props: Props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(item =>(
-                        <TableData id={item.id} name={item.name} phoneNumber={item.phoneNumber} />
+                    {data && data.map(item =>(
+                        <TableData key={item.id} id={item.id} dbID={item._id} name={item.name} phoneNumber={item.phoneNumber} handleDelete={deleteItem}/>
 
                     ))}
                  <TableInput/>
