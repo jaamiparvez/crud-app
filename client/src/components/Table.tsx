@@ -63,6 +63,7 @@ function handleAdd(id:number, name:string,phoneNumber:string){
 
 
 
+
 function handleDelete(id:string){
 
     const tempData = [...data as any[]];
@@ -102,7 +103,8 @@ function handleEdit(name:string,phoneNumber:string,dbID:string){
     setData(updatedData as any)
 }
 
-console.log('Data is ',data)
+const role = localStorage.getItem("role")
+
     return (
         <div>
         <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -118,9 +120,10 @@ console.log('Data is ',data)
                         <th scope="col" className="py-3 px-6">
                             Phone Number
                         </th>
+                        {role === "admin" &&
                         <th scope="col" className="py-3 px-6">
                             Action
-                        </th>
+                        </th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -130,7 +133,8 @@ console.log('Data is ',data)
                     ) :<tr><td colSpan={4}><p className="text-center text-lg font-bold p-4">No Data Found</p></td></tr>
                     }
 {/* {   data.length >0 && <tr><td><p className="text-center">No Data Found</p></td></tr>} */}
-                 <TableInput handleAdd={handleAdd}/>
+                 {role === "admin" &&
+                 <TableInput handleAdd={handleAdd}/>}
 
                 </tbody>
             </table>

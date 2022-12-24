@@ -30,7 +30,7 @@ const TableData = ({id,name,phoneNumber,dbID, handleDelete,handleEdit}: TableDat
         handleEdit(newName,newPhoneNumber,dbID)}
     }
 
-console.log('table data runing')
+    const role = localStorage.getItem("role")
   return (
     <tr className="border-b even:bg-slate-100 even:border-slate-200 odd:bg-gray-200 odd:border-gray-100">
                 <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap">
@@ -45,13 +45,14 @@ console.log('table data runing')
     className="shadow appearance-none border rounded w-1/2 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
  : phoneNumber}
                 </td>
+                {role === "admin" &&
                 <td className="py-4 px-6">
                     {isEditing ?
                     <button onClick={handleDone} className="font-medium text-blue-600 hover:underline">Done</button>
                     : <button  onClick={onEdit} className="font-medium text-blue-600 hover:underline">Edit</button>
                     }
                     <button onClick={()=>{handleDelete(dbID)}} className="pl-2 font-medium text-red-600 hover:underline">Delete</button>
-                </td>
+                </td>}
             </tr>
   )
 }

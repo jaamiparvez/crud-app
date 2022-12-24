@@ -26,14 +26,14 @@ const Login = (props: Props) => {
     })
   })
     .then(response => {
-      console.log(response)
       if(response.ok){
         setShowError(false)
         // return redirect("/dashboard");
 
       //  return <Navigate replace to="/dashboard" state={{ from: location }} />
-    return  response.json().then((parsedJson)=>{
-      console.log(parsedJson)
+    return  response.json().then((user)=>{
+      localStorage.setItem("role", user.role);
+      localStorage.setItem("isLoggedIn","true");
       navigate('/dashboard')
     })
     }else if(response.status === 404) {

@@ -14,6 +14,7 @@ interface dataInterface  {
 const Dashboard = (props: Props) => {
   const [data, setData] = useState<dataInterface[]|undefined>()
   const [searchData, setSearchData] = useState<dataInterface[]|undefined>()
+
   
   useEffect(()=>{
     fetch('http://localhost:3000/data',{ method: "GET",

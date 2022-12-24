@@ -29,6 +29,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
   const UserSchema = new mongoose.Schema({
     user:String,
     password:String,
+    role:String
   });
   
   const UserModel = mongoose.model('User', UserSchema);
@@ -81,8 +82,9 @@ function isLoggedIn(req,res,next){
 // console.log('server is running...')
 // })
 app.post('/login',async (req,res)=>{
-  const {user,password} = req.body;
-  UserModel.findOne({username:user,password:password}, function(err,user){
+  console.log('in login route')
+  const {username,password} = req.body;
+  UserModel.findOne({username:username,password:password}, function(err,user){
     if(err){
       console.log('error',err)
       return res.status(500).send()
@@ -92,7 +94,8 @@ app.post('/login',async (req,res)=>{
       return res.status(404).send()
     }
 
-    return res.json({user})
+    // const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+    return res.json({user:user.user,role:user.role})
 
   })
   //goolge: how to check user and password in mogoose

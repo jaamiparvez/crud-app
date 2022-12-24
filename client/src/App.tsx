@@ -8,13 +8,14 @@ function App() {
   return (
     <div className="mx-auto flex justify-center p-20">
      <Routes>
-      <Route path="/" element={<Login/>} ></Route>
-      <Route path="/dashboard" element={<Dashboard/>} ></Route>
+     <Route path="/" element={<Login/>} ></Route>
+      <Route path="/login" element={<Login/>} ></Route>
+      {/* <Route path="/dashboard" element={<Dashboard/>} ></Route> */}
       
-      {/* <Route path="/dashboard" element={<ProtectedRoute user={user}> */}
-      {/* <Dashboard/> */}
-      {/* </ProtectedRoute>} ></Route> */}
-      <Route path="*" element={<p className="text-2xl flex justify-center items-center h-screen">There's nothing to see here: 404!</p>} />
+      <Route element={<ProtectedRoute/>}>
+        <Route element={<Dashboard/>} path="/dashboard"/>
+      </Route>
+      {/* <Route path="/*" element={<p className="text-2xl flex justify-center items-center h-screen">There's nothing to see here: 404!</p>} /> */}
      </Routes>
     </div>
   )
