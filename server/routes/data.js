@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const DataModel = require('../models/DataModel')
+const DataModel = require('../models/data')
 
 router.get('/',async (req,res)=>{
     const data = await DataModel.find()
