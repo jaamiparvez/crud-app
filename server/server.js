@@ -7,6 +7,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
+const DataModel = require('./models/DataModel')
+const UserModel = require('./models/UserModel')
 
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
@@ -14,25 +16,6 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
     app.listen(3000);
   })
 
-
-
-
-  const DataSchema = new mongoose.Schema({
-    id:Number,
-    name:String,
-    phoneNumber:String
-  });
-  
-  const DataModel = mongoose.model('Data', DataSchema);
-
-
-  const UserSchema = new mongoose.Schema({
-    user:String,
-    password:String,
-    role:String
-  });
-  
-  const UserModel = mongoose.model('User', UserSchema);
 
 app.get('/data',async (req,res)=>{
     const data = await DataModel.find()
