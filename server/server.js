@@ -19,3 +19,5 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 
 app.use('/data',DataRoute)
 app.use('/login',LoginRoute)
+
+module.exports = app
