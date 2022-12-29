@@ -41,7 +41,7 @@ const TableData = ({id,name,phoneNumber,dbID, handleDelete,handleEdit}: TableDat
                 <NameInput name={newName} setName={setNewName} showError={showError}/> : name}
                 </td>
                 <td className="py-4 px-6">
-                {isEditing ? <input value={newPhoneNumber} onChange={(e)=>setNewPhoneNumber(e.target.value)} type="text" placeholder="Name"
+                {isEditing ? <input value={newPhoneNumber} onChange={(e)=>setNewPhoneNumber(e.target.value)} type="number" placeholder="Name"
     className="shadow appearance-none border rounded w-1/2 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
  : phoneNumber}
                 </td>
