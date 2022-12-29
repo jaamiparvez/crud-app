@@ -1,5 +1,5 @@
 export  function  getAllData(){
- return fetch('http://localhost:3000/data',{ method: "GET",
+ return fetch('/data',{ method: "GET",
   headers: {
     "Content-Type": "application/json"
   }}).then((response)=> response.json())
@@ -7,14 +7,14 @@ export  function  getAllData(){
 
 
 export  function  getDataById(id){
-  return fetch(`http://localhost:3000/data/${id}`,{ method: "GET",
+  return fetch(`/data/${id}`,{ method: "GET",
   headers: {
     "Content-Type": "application/json"
   }}).then((response)=>response.json())
  }
 
  export function postData(id,name,phoneNumber){
-  return fetch('http://localhost:3000/data', {
+  return fetch('/data', {
     method: 'POST',
     headers: {
       "Content-Type": 'application/json'
@@ -28,7 +28,7 @@ export  function  getDataById(id){
  }
 
  export function deleteDataById(id){
-  fetch(`http://localhost:3000/data/${id}`, {
+  fetch(`/data/${id}`, {
     method: 'DELETE',
     headers: {
       "Content-Type": 'application/json'
