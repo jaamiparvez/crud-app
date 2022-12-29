@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TableData from "./TableData"
 import TableInput from "./TableInput"
-// import {getData} from "../api"
+import {postData,deleteDataById,updateData} from "../api"
 
 interface dataInterface  {
     id:number,
@@ -25,12 +25,7 @@ interface tableInterface  {
 
 
 
-// const data:dataInterface[] = [{ id: 1, name: "John Doe", phoneNumber: 12345678 },
-// { id: 1, name: "Jane Doe", phoneNumber: 12345678 }]
-
 const Table = ({data,setData}:tableInterface) => {
-
-    // const [data, setData] = useState<dataInterface[]>()
 
 function handleAdd(id:number, name:string,phoneNumber:string){
     let newItem : newItemInterface = {
@@ -40,28 +35,14 @@ function handleAdd(id:number, name:string,phoneNumber:string){
     }
     newItem.name=name
 
-  fetch('http://localhost:3000/data', {
-    method: 'POST',
-    headers: {
-      "Content-Type": 'application/json'
-    },
-    body: JSON.stringify({
-      id,
-      name,
-      phoneNumber
-    })
-  })
-    .then(response => {
-    response.json().then(parsedJson=>{
-        newItem._id = parsedJson._id
-        const tempData = [...(data || [])];
-         tempData.push(newItem)
-         setData(tempData)
-
-    })})
+    postData(id,name,phoneNumber).then(parsedJson=>{
+                newItem._id = parsedJson._id
+                const tempData = [...(data || [])];
+                 tempData.push(newItem)
+                 setData(tempData)
+        
+            })
 }
-
-
 
 
 function handleDelete(id:string){
@@ -70,13 +51,7 @@ function handleDelete(id:string){
     const updatedTempData = tempData.filter(item => item._id !== id);
 
     setData(updatedTempData)
-    fetch(`http://localhost:3000/data/${id}`, {
-        method: 'DELETE',
-        headers: {
-          "Content-Type": 'application/json'
-        }
-      })
-    
+    deleteDataById(id)
 }
 
 function handleEdit(name:string,phoneNumber:string,dbID:string){
@@ -85,17 +60,7 @@ function handleEdit(name:string,phoneNumber:string,dbID:string){
             item.name = name
             item.phoneNumber = phoneNumber
 
-            fetch(`http://localhost:3000/data/${dbID}`, {
-                method: 'PUT',
-                headers: {
-                  "Content-Type": 'application/json'
-                },
-                body: JSON.stringify({
-                  name,
-                  phoneNumber
-                })
-              }).then(response=>response.json())
-
+            updateData(dbID,name,phoneNumber)
              
         }
         return item

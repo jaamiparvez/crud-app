@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Table from "../components/Table"
 import Search from "../components/Search"
 import { useNavigate } from "react-router-dom"
+import {getAllData, getDataById} from "../api"
 
 type Props = {}
 
@@ -18,35 +19,22 @@ const Dashboard = (props: Props) => {
   const [searchData, setSearchData] = useState<dataInterface[]|undefined>()
 
   
-  useEffect(()=>{
-    fetch('http://localhost:3000/data',{ method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }}).then((data)=>data.json()).then(setData)
+useEffect(()=>{
+  getAllData().then(setData)
 },[])
 
 function handleSearch(id:string){
-  fetch(`http://localhost:3000/data/${id}`,{ method: "GET",
-  headers: {
-    "Content-Type": "application/json"
-  }}).then((data)=>data.json()).then(setData)
+  getDataById(id).then(setData)
 }
   
 function handleCancelSearch(){
-
-  fetch('http://localhost:3000/data',{ method: "GET",
-headers: {
-"Content-Type": "application/json"
-}}).then((data)=>data.json()).then(setData)
+  getAllData().then(setData)
 }
 
 function handleLogout(){
   localStorage.setItem('isLoggedIn',"false")
   navigate('/login')
-
-
 }
-
 
   return (
     <div className="flex justify-center flex-col w-full p-20 ">
