@@ -15,7 +15,7 @@ const Login = (props: Props) => {
     let location = useLocation();
     const handleLogin = (e:React.FormEvent<HTMLFormElement>) =>{
       e.preventDefault()
-      fetch('/login', {
+      fetch('https://crud-app-lovat.vercel.app/login', {
     method: 'POST',
     headers: {
     "Content-Type": 'application/json'
