@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TableData from "./TableData"
 import TableInput from "./TableInput"
+ // @ts-ignore
 import {postData,deleteDataById,updateData} from "../api"
 
 interface dataInterface  {
@@ -34,7 +35,7 @@ function handleAdd(id:number, name:string,phoneNumber:string){
         phoneNumber,
     }
     newItem.name=name
-
+    // @ts-ignore
     postData(id,name,phoneNumber).then(parsedJson=>{
                 newItem._id = parsedJson._id
                 const tempData = [...(data || [])];
@@ -93,12 +94,14 @@ const role = localStorage.getItem("role")
                 </thead>
                 <tbody>
                     {data && data.length > 0 ? data.map(item =>(
+                         // @ts-ignore
                     <TableData key={item._id} id={item.id} dbID={item._id} name={item.name} phoneNumber={item.phoneNumber} handleDelete={handleDelete} handleEdit={handleEdit}/>
                     )
                     ) :<tr><td colSpan={4}><p className="text-center text-lg font-bold p-4">No Data Found</p></td></tr>
                     }
 {/* {   data.length >0 && <tr><td><p className="text-center">No Data Found</p></td></tr>} */}
                  {role === "admin" &&
+                  // @ts-ignore
                  <TableInput totalData={data.length+1} handleAdd={handleAdd}/>}
 
                 </tbody>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Table from "../components/Table"
 import Search from "../components/Search"
 import { useNavigate } from "react-router-dom"
+ // @ts-ignore
 import {getAllData, getDataById} from "../api"
 
 type Props = {}
