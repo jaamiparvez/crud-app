@@ -15,7 +15,7 @@ const Login = (props: Props) => {
     let location = useLocation();
     const handleLogin = (e:React.FormEvent<HTMLFormElement>) =>{
       e.preventDefault()
-      fetch('http://localhost:3000/login', {
+      fetch('/login', {
     method: 'POST',
     headers: {
     "Content-Type": 'application/json'
