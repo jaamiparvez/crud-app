@@ -1,5 +1,5 @@
 export  function  getAllData(){
- return fetch('https://crud-app-lovat.vercel.app/data',{ method: "GET",
+ return fetch('http://localhost:3000/data',{ method: "GET",
   headers: {
     "Content-Type": "application/json"
   }}).then((response)=> response.json())
@@ -7,14 +7,14 @@ export  function  getAllData(){
 
 
 export  function  getDataById(id){
-  return fetch(`https://crud-app-lovat.vercel.app/data/${id}`,{ method: "GET",
+  return fetch(`http://localhost:3000/data/${id}`,{ method: "GET",
   headers: {
     "Content-Type": "application/json"
   }}).then((response)=>response.json())
  }
 
  export function postData(id,name,phoneNumber){
-  return fetch('https://crud-app-lovat.vercel.app/data', {
+  return fetch('http://localhost:3000/data', {
     method: 'POST',
     headers: {
       "Content-Type": 'application/json'
@@ -28,7 +28,7 @@ export  function  getDataById(id){
  }
 
  export function deleteDataById(id){
-  fetch(`https://crud-app-lovat.vercel.app/data/${id}`, {
+  fetch(`http://localhost:3000/data/${id}`, {
     method: 'DELETE',
     headers: {
       "Content-Type": 'application/json'
@@ -37,14 +37,5 @@ export  function  getDataById(id){
  }
 
  export function updateData(dbID,name,phoneNumber){
-  fetch(`https://crud-app-lovat.vercel.app/data/${dbID}`, {
-                method: 'PUT',
-                headers: {
-                  "Content-Type": 'application/json'
-                },
-                body: JSON.stringify({
-                  name,
-                  phoneNumber
-                })
-              }).then(response=>response.json())
+
  }
