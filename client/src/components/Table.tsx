@@ -99,7 +99,7 @@ const role = localStorage.getItem("role")
                     }
 {/* {   data.length >0 && <tr><td><p className="text-center">No Data Found</p></td></tr>} */}
                  {role === "admin" &&
-                 <TableInput handleAdd={handleAdd}/>}
+                 <TableInput totalData={data.length+1} handleAdd={handleAdd}/>}
 
                 </tbody>
             </table>

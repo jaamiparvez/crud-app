@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import NameInput from "./NameInput"
 
 interface TableInputInterface  {
- 
+ totalData:number
   handleAdd:(id:number,name:string,phoneNumber:string)=>void
 
 }
 
-const TableInput = ({handleAdd}: TableInputInterface) => {
-  const [id,setId] = useState(1)
+const TableInput = ({totalData,handleAdd}: TableInputInterface) => {
+  const [id,setId] = useState(totalData)
   const [name,setName] = useState('')
   const [phoneNumber,setPhoneNumber] = useState('')
   const [showError, setShowError] = useState(false)
