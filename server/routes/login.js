@@ -5,6 +5,7 @@ const UserModel = require('../models/user')
 
 router.post('/',async (req,res)=>{
     const {username,password} = req.body;
+    console.log('user',username)
     UserModel.findOne({username:username,password:password}, function(err,user){
       if(err){
         console.log('error',err)
